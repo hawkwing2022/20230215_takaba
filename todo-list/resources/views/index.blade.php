@@ -51,15 +51,13 @@
   }
 </style>
 @section('contener')
-@if (count($errors) > 0)
-<ul>
-  @foreach ($errors->all() as $error)
-  <li>{{$error}}</li>
-  @endforeach
-</ul>
-@endif
 @section('card')
 <p class="title">Todo List</p>
+@error('task')
+<tr>
+  <td>{{$message}}</td>
+</tr>
+@enderror
 @section('todo')
 <form class="add_form" action="/add" method="POST">
   @csrf
@@ -78,13 +76,13 @@
     <td>{{$todo->created_at}}</td>
     <form action="/modify" method="POST">
       @csrf
-      <td><input type="hidden" name="id" value="{{$todo->id}}"></td>
+      <input type="hidden" name="id" value="{{$todo->id}}">
       <td><input class="task_column" type="text" name="task" value="{{$todo->task}}"></td>
       <td><button class="modify_btn" type="submit">更新</button></td>
     </form>
       <form action="/delete" method="POST">
       @csrf
-      <td><input type="hidden" name="deleted_id" value="{{$todo->id}}"></td>
+      <input type="hidden" name="deleted_id" value="{{$todo->id}}">
       <td><button class="delete_btn" type="submit">削除</button></td>
     </form>
 </tr>
