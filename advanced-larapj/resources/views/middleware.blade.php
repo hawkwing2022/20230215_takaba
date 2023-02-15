@@ -7,12 +7,11 @@
   <title>Document</title>
 </head>
 <body>
-  <form action="test.php" method="POST">
-    <label>
-      名前：
-      <input type="text" name="your_name" />
-    </label>
-    <input type="submit" name="submit" value="送信" />
+  <h1>{{$content}}</h1>
+  <form action="middleware" method="POST">
+    @csrf
+    <input type="text" name="content">
+    <input type="submit">
   </form>
 </body>
 </html>
